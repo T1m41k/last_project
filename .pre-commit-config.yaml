@@ -14,7 +14,7 @@ repos:
         additional_dependencies:
           - aiogram==3.15.0
           - fastapi==0.115.6
-          - pydantic==2.10.4
+          - pydantic==2.9.2
           - pydantic-settings==2.7.1
           - SQLAlchemy==2.0.36
   - repo: https://github.com/gitleaks/gitleaks
