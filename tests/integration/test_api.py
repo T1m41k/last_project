@@ -53,7 +53,7 @@ async def test_stats_rejects_other_scheme(api_client: AsyncClient) -> None:
 
 async def test_stats_rejects_wrong_token(api_client: AsyncClient) -> None:
     """Неправильний токен — 403."""
-    response = await api_client.get(STATS_URL, headers=bearer("неправильний"))
+    response = await api_client.get(STATS_URL, headers=bearer("wrong-token"))
     assert response.status_code == 403
     assert "ADMIN" not in response.text
 
