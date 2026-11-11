@@ -33,7 +33,9 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     session_factory = create_session_factory(engine)
     app.state.settings = settings
     app.state.session_factory = session_factory
-    runtime = create_bot_runtime(settings, session_factory) if settings.bot_polling_enabled else None
+    runtime = (
+        create_bot_runtime(settings, session_factory) if settings.bot_polling_enabled else None
+    )
     if runtime is not None:
         runtime.start()
     try:

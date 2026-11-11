@@ -31,6 +31,4 @@ async def get_stats(session: Annotated[AsyncSession, Depends(get_session)]) -> A
         Статистика.
     """
     snapshot = await build_services(session).stats.collect()
-    return AdminStatsResponse(
-        users_count=snapshot.users_count, books_count=snapshot.books_count
-    )
+    return AdminStatsResponse(users_count=snapshot.users_count, books_count=snapshot.books_count)

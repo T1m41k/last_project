@@ -35,7 +35,7 @@ def test_get_settings_reads_environment(monkeypatch: pytest.MonkeyPatch) -> None
 
 
 def test_to_async_url_keeps_tls() -> None:
-    """sslmode перетворюється на ssl, channel_binding відкидається."""
+    """Sslmode перетворюється на ssl, channel_binding відкидається."""
     url = "postgresql://u:p@host.neon.tech/db?sslmode=require&channel_binding=require"
     assert to_async_url(url) == "postgresql+asyncpg://u:p@host.neon.tech/db?ssl=require"
 

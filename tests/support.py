@@ -75,7 +75,9 @@ class FakeBookRepository:
 
     async def list_owned(self, owner_id: int, *, limit: int, offset: int) -> list[Book]:
         """Повернути сторінку книг власника за спаданням id."""
-        owned = sorted((b for b in self.items.values() if b.owner_id == owner_id), key=lambda b: -b.id)
+        owned = sorted(
+            (b for b in self.items.values() if b.owner_id == owner_id), key=lambda b: -b.id
+        )
         return owned[offset : offset + limit]
 
     async def count_owned(self, owner_id: int) -> int:

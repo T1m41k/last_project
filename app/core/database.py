@@ -1,7 +1,12 @@
 """Підключення до PostgreSQL (Neon) через асинхронний SQLAlchemy."""
 
 from sqlalchemy import make_url
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import (
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 
 from app._detail.constants import ASYNC_DRIVER
 

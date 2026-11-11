@@ -32,9 +32,7 @@ class DialogRepository:
         )
         return result.scalar_one_or_none()
 
-    async def save(
-        self, user_id: int, flow: str, step: str, data: dict[str, Any]
-    ) -> DialogState:
+    async def save(self, user_id: int, flow: str, step: str, data: dict[str, Any]) -> DialogState:
         """Створити або оновити стан діалогу.
 
         Parameters

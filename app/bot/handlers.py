@@ -113,9 +113,7 @@ class BotHandlers:
         outcome = await services.add_book.answer(user.id, state, text)
         return self._render_outcome(outcome)
 
-    async def _handle_command(
-        self, services: Services, user: BotUser, name: str, args: str
-    ) -> str:
+    async def _handle_command(self, services: Services, user: BotUser, name: str, args: str) -> str:
         """Виконати команду з урахуванням активного діалогу."""
         handler = self._commands.get(name)
         if handler is None:

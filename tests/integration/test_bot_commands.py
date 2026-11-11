@@ -16,7 +16,9 @@ from tests.conftest import USER_ID
 from tests.support import Chat, FakeSender, next_event_id
 
 
-async def add_book(chat: Chat, title: str = "Дюна", author: str = "Герберт", pages: str = "600") -> str:
+async def add_book(
+    chat: Chat, title: str = "Дюна", author: str = "Герберт", pages: str = "600"
+) -> str:
     """Пройти діалог /add до кінця й повернути відповідь на підтвердження."""
     await chat.say("/add")
     await chat.say(title)
@@ -51,7 +53,9 @@ async def test_help_unknown_command_and_plain_text(chat: Chat) -> None:
     assert "лише команди" in await chat.say("привіт")
 
 
-async def test_full_crud_scenario(chat: Chat, session_factory: async_sessionmaker[AsyncSession]) -> None:
+async def test_full_crud_scenario(
+    chat: Chat, session_factory: async_sessionmaker[AsyncSession]
+) -> None:
     """Повний CRUD: створення, список, деталі, оновлення, видалення."""
     assert "Збережено" in await add_book(chat)
     assert "Дюна — Герберт" in await chat.say("/list")
@@ -148,9 +152,7 @@ async def test_command_argument_validation(chat: Chat) -> None:
     assert "Невідомий статус" in await chat.say("/update 1 status щось")
 
 
-async def test_list_is_paged(
-    chat: Chat, session_factory: async_sessionmaker[AsyncSession]
-) -> None:
+async def test_list_is_paged(chat: Chat, session_factory: async_sessionmaker[AsyncSession]) -> None:
     """Список розбивається на сторінки, найновіші першими."""
     await chat.say("/start")
     async with session_factory() as session, session.begin():
@@ -166,7 +168,10 @@ async def test_list_is_paged(
 
 
 async def test_duplicate_event_does_not_duplicate_record(
-    handlers: BotHandlers, sender: FakeSender, chat: Chat, session_factory: async_sessionmaker[AsyncSession]
+    handlers: BotHandlers,
+    sender: FakeSender,
+    chat: Chat,
+    session_factory: async_sessionmaker[AsyncSession],
 ) -> None:
     """Повторно отримана подія підтвердження не створює другий запис."""
     await chat.say("/add")

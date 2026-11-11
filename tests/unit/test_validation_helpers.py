@@ -16,7 +16,9 @@ from app.core.exceptions import ValidationFailedError
 
 def test_normalize_text_collapses_whitespace() -> None:
     """Зайві пробіли прибираються."""
-    assert normalize_text("  Дюна   Герберта ", field_label="назва", max_length=50) == "Дюна Герберта"
+    assert (
+        normalize_text("  Дюна   Герберта ", field_label="назва", max_length=50) == "Дюна Герберта"
+    )
 
 
 def test_normalize_text_rejects_empty() -> None:

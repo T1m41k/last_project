@@ -75,9 +75,7 @@ class BookService:
             note=None if note is None else parse_note(note),
         )
 
-    async def list_page(
-        self, owner_id: int, *, limit: int, offset: int
-    ) -> tuple[list[Book], int]:
+    async def list_page(self, owner_id: int, *, limit: int, offset: int) -> tuple[list[Book], int]:
         """Отримати сторінку книг користувача та їх загальну кількість.
 
         Parameters

@@ -59,7 +59,10 @@ def upgrade() -> None:
         sa.Column("data", postgresql.JSONB(), nullable=False),
         _now_column("updated_at"),
         sa.ForeignKeyConstraint(
-            ["user_id"], ["bot_users.id"], name="fk_dialog_states_user_id_bot_users", ondelete="CASCADE"
+            ["user_id"],
+            ["bot_users.id"],
+            name="fk_dialog_states_user_id_bot_users",
+            ondelete="CASCADE",
         ),
         sa.PrimaryKeyConstraint("id", name="pk_dialog_states"),
         sa.UniqueConstraint("user_id", name="uq_dialog_states_user_id"),
@@ -71,7 +74,9 @@ def upgrade() -> None:
         sa.Column("platform_event_id", sa.BigInteger(), nullable=False),
         _now_column("created_at"),
         sa.PrimaryKeyConstraint("id", name="pk_processed_events"),
-        sa.UniqueConstraint("platform", "platform_event_id", name="uq_processed_events_platform_event"),
+        sa.UniqueConstraint(
+            "platform", "platform_event_id", name="uq_processed_events_platform_event"
+        ),
     )
 
 

@@ -13,7 +13,9 @@ class ProcessedEvent(Base):
 
     __tablename__ = "processed_events"
     __table_args__ = (
-        UniqueConstraint("platform", "platform_event_id", name="uq_processed_events_platform_event"),
+        UniqueConstraint(
+            "platform", "platform_event_id", name="uq_processed_events_platform_event"
+        ),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)

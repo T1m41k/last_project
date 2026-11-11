@@ -59,14 +59,18 @@ async def test_on_message_converts_update() -> None:
     )
     await on_message(message, SimpleNamespace(update_id=900), handlers)
     handlers.handle_message.assert_awaited_once_with(
-        IncomingMessage(event_id=900, platform_user_id=77, text="/help", display_name="Іван Петренко")
+        IncomingMessage(
+            event_id=900, platform_user_id=77, text="/help", display_name="Іван Петренко"
+        )
     )
 
 
 async def test_on_message_ignores_messages_without_sender() -> None:
     """Повідомлення без відправника ігноруються."""
     handlers = SimpleNamespace(handle_message=AsyncMock())
-    await on_message(SimpleNamespace(from_user=None, text="x"), SimpleNamespace(update_id=1), handlers)
+    await on_message(
+        SimpleNamespace(from_user=None, text="x"), SimpleNamespace(update_id=1), handlers
+    )
     handlers.handle_message.assert_not_awaited()
 
 
@@ -80,7 +84,10 @@ def test_create_bot_runtime_requires_token() -> None:
 async def test_create_bot_runtime_builds_runtime() -> None:
     """З токеном створюється BotRuntime."""
     settings = Settings(
-        _env_file=None, database_url="postgresql://x/y", admin_api_token=ADMIN_KEY, bot_token=BOT_KEY
+        _env_file=None,
+        database_url="postgresql://x/y",
+        admin_api_token=ADMIN_KEY,
+        bot_token=BOT_KEY,
     )
     runtime = create_bot_runtime(settings, SimpleNamespace())
     assert isinstance(runtime, BotRuntime)

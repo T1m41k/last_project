@@ -15,7 +15,15 @@ from app.models import Book
 
 def make_book(book_id: int = 1, note: str | None = None) -> Book:
     """Створити книгу без звернення до БД."""
-    return Book(id=book_id, owner_id=1, title="Дюна", author="Ф. Герберт", pages=600, status="reading", note=note)
+    return Book(
+        id=book_id,
+        owner_id=1,
+        title="Дюна",
+        author="Ф. Герберт",
+        pages=600,
+        status="reading",
+        note=note,
+    )
 
 
 @pytest.mark.parametrize(

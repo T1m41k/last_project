@@ -6,7 +6,12 @@ from collections.abc import AsyncIterator
 import pytest
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import (
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 from sqlalchemy.pool import NullPool
 
 from app.bot.handlers import BotHandlers
@@ -49,7 +54,9 @@ async def engine(database_url: str) -> AsyncIterator[AsyncEngine]:
     engine = create_async_engine(to_async_url(database_url), poolclass=NullPool)
     async with engine.begin() as connection:
         await connection.execute(
-            text("TRUNCATE processed_events, dialog_states, books, bot_users RESTART IDENTITY CASCADE")
+            text(
+                "TRUNCATE processed_events, dialog_states, books, bot_users RESTART IDENTITY CASCADE"
+            )
         )
     yield engine
     await engine.dispose()

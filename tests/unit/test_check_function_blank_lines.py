@@ -112,7 +112,7 @@ def test_forbidden_cases_are_reported(source: str, line: int) -> None:
 
 
 def test_main_reports_and_returns_error(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
-    """main повертає 1 і друкує місце порушення."""
+    """Main повертає 1 і друкує місце порушення."""
     path = tmp_path / "bad.py"
     path.write_text(BLANK_BETWEEN_STATEMENTS, encoding="utf-8")
     assert main([str(path)]) == 1
@@ -120,7 +120,7 @@ def test_main_reports_and_returns_error(tmp_path: Path, capsys: pytest.CaptureFi
 
 
 def test_main_accepts_clean_file(tmp_path: Path) -> None:
-    """main повертає 0 для чистого файлу."""
+    """Main повертає 0 для чистого файлу."""
     path = tmp_path / "good.py"
     path.write_text(CLEAN_WITH_DOCSTRING, encoding="utf-8")
     assert main([str(path)]) == 0
